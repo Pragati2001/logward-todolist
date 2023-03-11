@@ -9,7 +9,7 @@ const AlertTodoDialog = (props) => {
     props.handleAlertDialogClose();
     console.log("close");
   };
-
+  // console.log("alert-dialog");
   return (
     <div>
       <Dialog

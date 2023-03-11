@@ -35,20 +35,25 @@ const useStyles = makeStyles((theme) => ({
     color: blue[400],
   },
 }));
-const TodoItems = (props) => {
+const TodoItems = ({
+  todoItems,
+  handleCheckboxChange,
+  removeTodoItem,
+  handleDialogOpen,
+}) => {
   const classes = useStyles();
 
   return (
     <div>
       <List>
-        {props.todoItems.map((value) => (
+        {todoItems.map((value) => (
           <div key={value.id}>
             <ListItem>
               <Checkbox
                 checked={value.checked}
                 checkedIcon={<CheckCircle />}
                 icon={<CheckCircleOutline />}
-                onChange={() => props.handleCheckboxChange(value)}
+                onChange={handleCheckboxChange(value)}
                 value="checked"
                 classes={{
                   root: classes.root,
@@ -64,7 +69,8 @@ const TodoItems = (props) => {
               <ListItemSecondaryAction>
                 <IconButton
                   classes={{ root: classes.delete }}
-                  onClick={() => props.removeTodoItem(value)}
+                  onClick={removeTodoItem(value)}
+                  // onClick={() => props.removeTodoItem(value)}
                 >
                   <DeleteIcon />
                 </IconButton>
@@ -75,7 +81,7 @@ const TodoItems = (props) => {
         ))}
       </List>
       <List>
-        <ListItem button onClick={props.handleDialogOpen}>
+        <ListItem button onClick={handleDialogOpen}>
           <ListItemIcon>
             {<AddIcon classes={{ root: classes.addIcon }} />}
           </ListItemIcon>
